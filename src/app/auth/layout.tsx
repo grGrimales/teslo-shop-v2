@@ -1,8 +1,15 @@
 
-export default function ShopLayout({ children }: { children: React.ReactNode }) {
+export default function ShopLayout( { children }: {
+    children: React.ReactNode;
+  } ) {
     return (
-        <main className="bg-cyan-100 min-h-screen">
-        {children}
-        </main>
+      <main className="flex justify-center">
+        <div className="w-full sm:w-[350px] px-10">
+  
+          { children }
+  
+        </div>
+      </main>
     );
-    }
+  }
+  
