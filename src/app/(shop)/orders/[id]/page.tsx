@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { IoCardOutline } from 'react-icons/io5';
-import { initialData } from '@/app/seed/seed';
+import { initialData } from '@/seed/seed';
 import { Title } from '@/app/components';
 
 
@@ -21,7 +21,7 @@ interface Props {
 }
 
 
-export default function ( { params }: Props ) {
+export default function OrdersIdPage ( { params }: Props ) {
 
   const { id } = params;
 

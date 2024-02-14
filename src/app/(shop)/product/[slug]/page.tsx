@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { titleFont } from '@/config/fonts';
 // import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from '@/components';
-import { initialData } from '@/app/seed/seed';
+import { initialData } from '@/seed/seed';
 import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from '@/app/components';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 
 
 
-export default function ( { params }: Props ) {
+export default function SlugPage ( { params }: Props ) {
 
   const { slug } = params;
   const product = initialData.products.find( product => product.slug === slug );

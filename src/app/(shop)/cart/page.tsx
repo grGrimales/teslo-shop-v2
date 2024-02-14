@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
-import { initialData } from '@/app/seed/seed';
+import { initialData } from '@/seed/seed';
 import { QuantitySelector, Title } from '@/app/components';
 
 
@@ -14,7 +14,7 @@ const productsInCart = [
 ];
 
 
-export default function () {
+export default function CartPage() {
 
 
  //redirect('/empty');
