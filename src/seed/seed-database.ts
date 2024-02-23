@@ -5,12 +5,18 @@ async function main(){
 console.log('Ejecutado desde seed-database.ts')
 
 //1. Eliminar todos los datos de la base de datos
+   await prisma.user.deleteMany(),
    await prisma.productImage.deleteMany(),
    await prisma.product.deleteMany(),
    await prisma.category.deleteMany()
 //2. Categoria
 
-const {categories, products} = initialData;
+const {categories, products, users} = initialData;
+
+await prisma.user.createMany({
+    data: users
+});
+
 const categoriesData = categories.map((name) => ({name}));
 console.log(categoriesData);
 
