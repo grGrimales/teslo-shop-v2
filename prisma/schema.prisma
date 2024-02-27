@@ -32,13 +32,10 @@ enum Role {
   admin
 }
 
-
-
 model Category {
   id      String    @id @default(uuid())
   name    String    @unique
   Product Product[]
-
 }
 
 model Product {
@@ -52,27 +49,52 @@ model Product {
   tags        String[] @default([])
   gender      Gender
 
-  category Category @relation(fields: [categoryId], references: [id])
-  categoryId String
+  category     Category       @relation(fields: [categoryId], references: [id])
+  categoryId   String
   productImage ProductImage[]
-  
+
   @@index([gender])
 }
 
-model ProductImage{
-  id Int @id @default(autoincrement())
+model ProductImage {
+  id  Int    @id @default(autoincrement())
   url String
 
-  product Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   productId String
 }
 
 model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
+  id            String       @id @default(uuid())
+  name          String
+  email         String       @unique
+  password      String
   emailVerified DateTime?
-  role     Role   @default(user)
-  image    String?
+  role          Role         @default(user)
+  image         String?
+  UserAddress   UserAddress?
+}
+
+model Country {
+  id          String        @id
+  name        String
+  UserAddress UserAddress[]
+}
+
+model UserAddress {
+  id         String  @id @default(uuid())
+  firstName  String
+  lastName   String
+  address    String
+  address2   String?
+  postalCode String
+  phone      String
+  city       String
+
+  // Relaciones
+  country   Country @relation(fields: [countryId], references: [id])
+  countryId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
 }
