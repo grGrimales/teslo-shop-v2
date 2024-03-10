@@ -1,8 +1,7 @@
 import Image from "next/image";
-import clsx from "clsx";
-import { IoCardOutline } from "react-icons/io5";
+
 import { initialData } from "@/seed/seed";
-import { Title } from "@/app/components";
+import { OrderStatus, PayPalButton, Title } from "@/app/components";
 import { getOrderById } from "@/actions";
 import { redirect } from "next/navigation";
 import { currencyFormat } from "@/utils/currencyFormat";
@@ -35,21 +34,7 @@ export default async function OrdersIdPage({ params }: Props) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {/* Carrito */}
           <div className="flex flex-col mt-5">
-            <div
-              className={clsx(
-                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
-                {
-                  "bg-red-500": !order?.isPaid,
-                  "bg-green-700": order?.isPaid,
-                }
-              )}
-            >
-              <IoCardOutline size={30} />
-              {/* <span className="mx-2">Pendiente de pago</span> */}
-              <span className="mx-2">
-                {order?.isPaid ? "Pagada" : "Pendiente de pago"}
-              </span>
-            </div>
+            <OrderStatus isPaid={order!.isPaid} />
 
             {/* Items */}
             {order!.OrderItem.map((item) => (
@@ -100,24 +85,37 @@ export default async function OrdersIdPage({ params }: Props) {
             <h2 className="text-2xl mb-2">Resumen de orden</h2>
 
             <div className="grid grid-cols-2">
-        <span>N° Productos</span>
-        <span className="text-right">
-         
-          {order?.itemsInOrder === 1 ? "1 atículo" : `${order?.itemsInOrder} artículos`}
-        </span>
+              <span>N° Productos</span>
+              <span className="text-right">
+                {order?.itemsInOrder === 1
+                  ? "1 atículo"
+                  : `${order?.itemsInOrder} artículos`}
+              </span>
 
-        <span>Subtotal</span>
-        <span className="text-right"> {currencyFormat(order!.subTotal)}</span>
+              <span>Subtotal</span>
+              <span className="text-right">
+                {" "}
+                {currencyFormat(order!.subTotal)}
+              </span>
 
-        <span>Impuestos (15%)</span>
-        <span className="text-right"> {currencyFormat(order!.tax)}</span>
+              <span>Impuestos (15%)</span>
+              <span className="text-right"> {currencyFormat(order!.tax)}</span>
 
-        <span className="mt-5 text-2xl">Total:</span>
-        <span className="mt-5 text-2xl text-right"> {currencyFormat(order!.total)}</span>
-      </div>
+              <span className="mt-5 text-2xl">Total:</span>
+              <span className="mt-5 text-2xl text-right">
+                {" "}
+                {currencyFormat(order!.total)}
+              </span>
+            </div>
 
             <div className="mt-5 mb-2 w-full">
-              <div
+              {order?.isPaid ? (
+                <OrderStatus isPaid={order!.isPaid} />
+              ) : (
+                <PayPalButton amount={order!.total} orderId={order!.id} />
+              )}
+
+              {/* <div
                 className={clsx(
                   "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
                   {
@@ -127,9 +125,9 @@ export default async function OrdersIdPage({ params }: Props) {
                 )}
               >
                 <IoCardOutline size={30} />
-                {/* <span className="mx-2">Pendiente de pago</span> */}
+                {/* <span className="mx-2">Pendiente de pago</span> 
                 <span className="mx-2">Pagada</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

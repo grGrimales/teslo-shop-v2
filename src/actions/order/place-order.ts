@@ -126,8 +126,18 @@ export const placeOrder = async (
           ...restAddress,
           countryId: country,
           orderId: order.id,
+          userId: '', // Add the missing 'userId' property
+          rememberAddress: false, // Add the missing 'rememberAddress' property
         },
+
       });
+      console.log(  {
+        ...restAddress,
+        countryId: country,
+        orderId: order.id,
+        userId: '', // Add the missing 'userId' property
+        rememberAddress: false, // Add the missing 'rememberAddress' property
+      },)
 
       console.log(orderAddress)
 

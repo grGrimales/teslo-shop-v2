@@ -1,11 +1,11 @@
 
 
-
+export * from './paypal/PayPalButton';
 
 export * from './product/slideshow/ProductSlideshow';
 export * from './product/slideshow/ProductMobileSlideshow';
 
-export * from './ui/provider/Provider';
+export * from './ui/providers/Providers';
 export * from './product/size/SizeSelector';
 
 export * from './product/quantity-selector/QuantitySelector';
@@ -20,3 +20,6 @@ export * from './ui/top-menu/TopMenu';
 export * from './ui/footer/Footer';
 export * from './ui/sidebar/Sidebar';
 export * from './ui/pagination/Pagination';
+
+
+export * from './orders/OrderStatus';
