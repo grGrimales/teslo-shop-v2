@@ -34,7 +34,7 @@ const onPlaceOrder = async () => {
     size: product.size,
   }))
 
-
+  console.log(productsToOrder, address)
   //! Server Action
   const resp = await placeOrder( productsToOrder, address);
   console.log(resp)

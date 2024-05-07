@@ -18,7 +18,6 @@ export const authConfig: NextAuthConfig = {
 
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
-            console.log({ auth });
             // const isLoggedIn = !!auth?.user;
       
             // const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
@@ -38,7 +37,6 @@ export const authConfig: NextAuthConfig = {
             return token;
         },
         session({ session, token, user }) {
-            console.log(session, token, user)
             session.user = token.data as any;
             return session;
         }
@@ -55,7 +53,6 @@ export const authConfig: NextAuthConfig = {
                 if (!parsedCredentials.success) return null;
 
                 const { email, password } = parsedCredentials.data;
-                console.log(email, password);
 
 
                 //Buscar el correo en la base de datos
@@ -72,8 +69,6 @@ export const authConfig: NextAuthConfig = {
 
                 const { password: _, ...rest } = user;
 
-
-                console.log(rest)
                 return rest;
             }
         }),

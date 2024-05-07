@@ -17,6 +17,8 @@ export const placeOrder = async (
   const session = await auth();
   const userId = session?.user.id;
 
+  console.log({first: productIds, second: address, third: userId})
+
   // Verificar sesión de usuario
   if (!userId) {
     return {
@@ -120,26 +122,14 @@ export const placeOrder = async (
 
       // 3. Crear la direccion de la orden
       // Address
-      const { country,  ...restAddress } = address;
+      const { country, ...restAddress } = address;
       const orderAddress = await tx.orderAddress.create({
         data: {
           ...restAddress,
           countryId: country,
           orderId: order.id,
-          userId: '', // Add the missing 'userId' property
-          rememberAddress: false, // Add the missing 'rememberAddress' property
         },
-
       });
-      console.log(  {
-        ...restAddress,
-        countryId: country,
-        orderId: order.id,
-        userId: '', // Add the missing 'userId' property
-        rememberAddress: false, // Add the missing 'rememberAddress' property
-      },)
-
-      console.log(orderAddress)
 
       return {
         updatedProducts: updatedProducts,

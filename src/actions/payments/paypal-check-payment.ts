@@ -24,7 +24,7 @@ export const paypalCheckPayment = async (paypalTransactionId: string) => {
   }
 
   const { status, purchase_units } = resp;
-  console.log({status, purchase_units});
+  console.log('PAYPAPL CHECK',{status, purchase_units});
   const { invoice_id: orderId } = purchase_units[0]; // TODO: invoice ID
 
   if ( status !== 'COMPLETED' ) {
@@ -38,7 +38,7 @@ export const paypalCheckPayment = async (paypalTransactionId: string) => {
   try {
 
     await prisma.order.update({
-      where: { id: orderId },
+      where: { id: '766095a1-8c53-41d3-9b38-9e12422581fd' },
       data:  {
         isPaid: true,
         paidAt: new Date()

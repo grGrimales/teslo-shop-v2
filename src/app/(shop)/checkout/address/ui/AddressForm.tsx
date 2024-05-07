@@ -51,10 +51,7 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
 
 
   useEffect(() => {
-    console.log('first render')
-    console.log(address)
     if ( address.firstName ) {
-      console.log('existe')
       reset(address)
     }
   },[])
@@ -64,10 +61,8 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
 
 
   const onSubmit = async( data: FormInputs ) => {
-    
-
     const { rememberAddress, ...restAddress } = data;
-    setAddress(data);
+    setAddress(restAddress);
 
     if ( rememberAddress ) {
       await setUserAddress(restAddress, session!.user.id );
