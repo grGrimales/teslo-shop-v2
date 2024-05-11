@@ -6,11 +6,6 @@ import { getOrderById } from "@/actions";
 import { redirect } from "next/navigation";
 import { currencyFormat } from "@/utils/currencyFormat";
 
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-];
 
 interface Props {
   params: {
@@ -21,7 +16,6 @@ interface Props {
 export default async function OrdersIdPage({ params }: Props) {
   const { id } = params;
   const { order, ok } = await getOrderById(id);
-  console.log(order);
 
   if (!ok) redirect("/");
   const address = order!.OrderAddress;
