@@ -6,7 +6,7 @@ export const revalidate = 0;
 
 import {  getPaginatedOrders } from "@/actions";
 import { getPaginatedProductsWithImages } from "@/actions/product/product-pagination";
-import {  Pagination, Title } from "@/app/components";
+import {  Pagination, ProductImage, Title } from "@/app/components";
 import { currencyFormat } from "@/utils/currencyFormat";
 import Image from "next/image";
 import Link from "next/link";
@@ -87,8 +87,8 @@ export default async function ProductsPage({ searchParams }: Props) {
               >
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <Link href={`/product/${product.slug}`}>
-                <Image
-                 src={`/products/${product.ProductImage[0].url}`}
+                <ProductImage
+                 src={`${product.ProductImage[0]?.url}`}
                   width={80} 
                   height={80}
                   alt={product.title}
