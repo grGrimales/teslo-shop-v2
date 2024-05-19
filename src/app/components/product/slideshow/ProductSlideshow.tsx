@@ -12,7 +12,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-import './slideshow.css';
+import 'src/app/components/product/slideshow.css';
 import Image from 'next/image';
 import { ProductImage } from '../product-image/ProductImage';
 
