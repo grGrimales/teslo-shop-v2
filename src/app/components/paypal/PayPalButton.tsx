@@ -19,8 +19,6 @@ export const PayPalButton = ({ orderId, amount }: Props) => {
   const [{ isPending }] = usePayPalScriptReducer();
   const rountedAmount = Math.round(amount * 100) / 100; //123.23 Devuelve dos decimales
 
-
-
   if (isPending) {
     return (
       <div className="animate-pulse mb-16">
@@ -35,14 +33,14 @@ export const PayPalButton = ({ orderId, amount }: Props) => {
     actions: CreateOrderActions
   ): Promise<any> => {
     const transactionId = await actions.order.create({
+      intent: "CAPTURE", // Añadir la propiedad intent
       purchase_units: [
         {
           invoice_id: orderId,
           amount: {
+            currency_code: "USD", // Añadir la propiedad currency_code
             value: `${rountedAmount}`, //123.23
           },
-                        
-
         },
       ],
     });
@@ -55,17 +53,16 @@ export const PayPalButton = ({ orderId, amount }: Props) => {
   };
 
   const onApprove = async (data: OnApproveData, actions: OnApproveActions) => {
-    console.log('onApprove')
+    console.log("onApprove");
     const details = await actions.order?.capture();
     if (!details) return;
 
-     await paypalCheckPayment( details.id! );
+    await paypalCheckPayment(details.id!);
   };
 
-  return(
-
+  return (
     <div className="relative z-0">
       <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
     </div>
-  )
+  );
 };
