@@ -12,8 +12,6 @@ export const LoginForm = () => {
 
 
   const [state, dispatch] = useFormState(authenticate, undefined);
-  
-  console.log(state);
 
   useEffect(() => {
     if ( state === 'Success' ) {
@@ -31,6 +29,7 @@ export const LoginForm = () => {
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="email"
         name="email"
+        value={'example2@gmail.com'}
       />
 
       <label htmlFor="email">Contraseña</label>
@@ -38,6 +37,7 @@ export const LoginForm = () => {
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="password"
         name="password"
+        value={'123456'}
       />
 
       <div
