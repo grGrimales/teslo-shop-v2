@@ -83,3 +83,5 @@ export default async function ProductBySlugPage ( { params }: Props ) {
     </div>
   );
 }
+
+
