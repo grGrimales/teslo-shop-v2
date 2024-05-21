@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props) {
    openGraph: {
       title: product?.title ?? 'Producto no encontrado',
       description: product?.description ?? '',
-      images: [`/products/${product?.images[0]}`],
+      images: [`https://teslo-shop-next-store.vercel.app/products/${product?.images[0]}`],
    }
   };
 }
