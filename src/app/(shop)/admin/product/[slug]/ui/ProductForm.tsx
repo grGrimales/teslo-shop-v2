@@ -34,9 +34,6 @@ images?: FileList;
 
 export const ProductForm = ({ product, categories }: Props) => {
 
-  console.log(product, 'product**********product'                 )
-
-
   const router = useRouter();
   const {
     handleSubmit,
@@ -88,10 +85,6 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append("sizes", prodyuctToSave.sizes.toString());
     formData.append("categoryId", data.categoryId);
     formData.append("gender", prodyuctToSave.gender);
-
-
-  console.log(images, 'images**********images'                 )
-
 
   if(images){
     for(let i = 0; i < images.length; i++){
@@ -237,15 +230,15 @@ export const ProductForm = ({ product, categories }: Props) => {
                 <ProductImage
                   alt={product.title ?? ''}
                   src={`${image.url}`}
-                  width={300}
-                  height={300}
-                  className="rounded-t shadow-md"
+                  width={288}
+                  height={288}
+                  className="rounded-t shadow-md "
                 />
   
                 <button
                   type="button"
                   onClick={() => deleteProductImage(image.id, image.url)}
-                  className="btn-danger w-full rounded-b-xl"
+                  className="btn-danger w-full xl:w-72 rounded-b-xl"
                 >
                   Eliminar
                 </button>
